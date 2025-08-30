@@ -1,0 +1,34 @@
+{
+  "name": "verypay-contracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:coverage": "hardhat coverage",
+    "test:gas": "REPORT_GAS=true hardhat test",
+    "test:security": "hardhat test test/security/*.js",
+    "deploy": "hardhat run scripts/deploy.js",
+    "deploy:testnet": "hardhat run scripts/deploy.js --network testnet"
+  },
+  "keywords": ["verypay", "merchant", "blockchain", "smart-contracts"],
+  "author": "VeryPay Team",
+  "license": "MIT",
+  "description": "Smart contracts for VeryPay Merchant platform",
+  "devDependencies": {
+    "hardhat": "^2.26.3",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "chai": "^4.3.10",
+    "ethereum-waffle": "^4.0.10",
+    "ethers": "^5.7.2",
+    "solidity-coverage": "^0.8.5",
+    "hardhat-gas-reporter": "^1.0.9",
+    "@openzeppelin/contracts": "^5.0.0",
+    "hardhat-contract-sizer": "^2.10.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0"
+  }
+}
