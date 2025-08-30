@@ -12,6 +12,7 @@ import {
   Plus
 } from 'lucide-react'
 import Link from 'next/link'
+import { DashboardHeader } from '@/components/dashboard-header'
 
 // Mock data for demonstration
 const stats = [
@@ -99,35 +100,29 @@ const recentTransactions = [
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h2>
-          <p className="text-gray-600">Welcome back! Here&apos;s what&apos;s happening with your business today.</p>
+    <div className="min-h-screen bg-background">
+      <DashboardHeader />
+      <div className="container py-8 space-y-8">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h2>
+            <p className="text-muted-foreground">Welcome back! Here&apos;s what&apos;s happening with your business today.</p>
+          </div>
         </div>
-        <div className="flex items-center space-x-4">
-          <Button asChild>
-            <Link href="/payment">
-              <Plus className="mr-2 h-4 w-4" />
-              Create Payment
-            </Link>
-          </Button>
-        </div>
-      </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <Card key={stat.name} className="relative overflow-hidden">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
                 {stat.name}
               </CardTitle>
-              <stat.icon className="h-4 w-4 text-gray-600" />
+              <stat.icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+              <div className="text-2xl font-bold text-foreground">{stat.value}</div>
               <div className="flex items-center space-x-2 text-sm">
                 <span
                   className={`inline-flex items-center ${
@@ -143,7 +138,7 @@ export default function DashboardPage() {
                   )}
                   {stat.change}
                 </span>
-                <span className="text-gray-500">{stat.description}</span>
+                <span className="text-muted-foreground">{stat.description}</span>
               </div>
             </CardContent>
           </Card>
@@ -181,17 +176,17 @@ export default function DashboardPage() {
                         : 'bg-red-500'
                     }`} />
                     <div>
-                      <p className="text-sm font-medium text-gray-900">
+                      <p className="text-sm font-medium text-foreground">
                         {transaction.customer}
                       </p>
-                      <p className="text-xs text-gray-500">{transaction.timestamp}</p>
+                      <p className="text-xs text-muted-foreground">{transaction.timestamp}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-foreground">
                       ${transaction.amount.toFixed(2)}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground">
                       {transaction.veryAmount.toFixed(2)} $VERY
                     </p>
                   </div>
@@ -217,7 +212,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="text-left">
                       <p className="font-medium">Create Payment Request</p>
-                      <p className="text-sm text-gray-500">Generate QR code for customer payment</p>
+                      <p className="text-sm text-muted-foreground">Generate QR code for customer payment</p>
                     </div>
                   </div>
                 </Link>
@@ -231,7 +226,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="text-left">
                       <p className="font-medium">View QR Codes</p>
-                      <p className="text-sm text-gray-500">Manage active payment QR codes</p>
+                      <p className="text-sm text-muted-foreground">Manage active payment QR codes</p>
                     </div>
                   </div>
                 </Link>
@@ -245,7 +240,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="text-left">
                       <p className="font-medium">View Analytics</p>
-                      <p className="text-sm text-gray-500">Detailed sales and customer insights</p>
+                      <p className="text-sm text-muted-foreground">Detailed sales and customer insights</p>
                     </div>
                   </div>
                 </Link>
@@ -259,7 +254,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="text-left">
                       <p className="font-medium">Manage Rewards</p>
-                      <p className="text-sm text-gray-500">Configure customer loyalty programs</p>
+                      <p className="text-sm text-muted-foreground">Configure customer loyalty programs</p>
                     </div>
                   </div>
                 </Link>
@@ -280,34 +275,35 @@ export default function DashboardPage() {
             <div className="flex items-start space-x-3">
               <div className="h-2 w-2 mt-2 rounded-full bg-green-500" />
               <div className="flex-1">
-                <p className="text-sm text-gray-900">Payment received from 0x1234...5678</p>
-                <p className="text-xs text-gray-500">$125.50 (95.25 $VERY) • 2 minutes ago</p>
+                <p className="text-sm text-foreground">Payment received from 0x1234...5678</p>
+                <p className="text-xs text-muted-foreground">$125.50 (95.25 $VERY) • 2 minutes ago</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
               <div className="h-2 w-2 mt-2 rounded-full bg-blue-500" />
               <div className="flex-1">
-                <p className="text-sm text-gray-900">New customer registered</p>
-                <p className="text-xs text-gray-500">0x8765...4321 • 15 minutes ago</p>
+                <p className="text-sm text-foreground">New customer registered</p>
+                <p className="text-xs text-muted-foreground">0x8765...4321 • 15 minutes ago</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
               <div className="h-2 w-2 mt-2 rounded-full bg-yellow-500" />
               <div className="flex-1">
-                <p className="text-sm text-gray-900">QR code generated for $50.00 payment</p>
-                <p className="text-xs text-gray-500">Valid for 1 hour • 32 minutes ago</p>
+                <p className="text-sm text-foreground">QR code generated for $50.00 payment</p>
+                <p className="text-xs text-muted-foreground">Valid for 1 hour • 32 minutes ago</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
               <div className="h-2 w-2 mt-2 rounded-full bg-purple-500" />
               <div className="flex-1">
-                <p className="text-sm text-gray-900">Walking rewards distributed</p>
-                <p className="text-xs text-gray-500">15.5 $VERY to 8 customers • 1 hour ago</p>
+                <p className="text-sm text-foreground">Walking rewards distributed</p>
+                <p className="text-xs text-muted-foreground">15.5 $VERY to 8 customers • 1 hour ago</p>
               </div>
             </div>
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   )
 }

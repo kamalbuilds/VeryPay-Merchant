@@ -2,12 +2,13 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowRight, CreditCard, Smartphone, TrendingUp, Users, Shield, Zap } from 'lucide-react'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
-      <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-14 items-center">
           <div className="mr-4 hidden md:flex">
             <Link href="/" className="mr-6 flex items-center space-x-2">
@@ -27,22 +28,25 @@ export default function HomePage() {
                 Customers
               </Link>
             </nav>
+            <div className="ml-4">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-very-50 via-white to-very-50">
+      <section className="relative overflow-hidden bg-gradient-to-br from-very-50 via-background to-very-50 dark:from-very-900 dark:via-background dark:to-very-800">
         <div className="container px-4 py-24 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
               Accept{' '}
               <span className="bg-gradient-to-r from-very-600 to-very-800 bg-clip-text text-transparent">
                 $VERY
               </span>{' '}
               Payments
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mt-6 text-lg leading-8 text-muted-foreground">
               The future of merchant payments with Web3 rewards, loyalty programs, and seamless crypto transactions. 
               Start accepting $VERY tokens today and reward your customers automatically.
             </p>
@@ -66,13 +70,13 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-background">
         <div className="container px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Everything you need to accept crypto payments
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-muted-foreground">
               Built for modern merchants who want to embrace the future of payments
             </p>
           </div>
@@ -90,7 +94,7 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="text-sm text-gray-600 space-y-2">
+                  <ul className="text-sm text-muted-foreground space-y-2">
                     <li>• QR code payment system</li>
                     <li>• Real-time confirmations</li>
                     <li>• Auto-convert to fiat</li>
@@ -109,7 +113,7 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="text-sm text-gray-600 space-y-2">
+                  <ul className="text-sm text-muted-foreground space-y-2">
                     <li>• Walking rewards tracking</li>
                     <li>• Tier-based loyalty</li>
                     <li>• Automatic distribution</li>
@@ -128,7 +132,7 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="text-sm text-gray-600 space-y-2">
+                  <ul className="text-sm text-muted-foreground space-y-2">
                     <li>• Progressive Web App</li>
                     <li>• Offline capabilities</li>
                     <li>• Push notifications</li>
@@ -147,7 +151,7 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="text-sm text-gray-600 space-y-2">
+                  <ul className="text-sm text-muted-foreground space-y-2">
                     <li>• Sales analytics</li>
                     <li>• Customer profiles</li>
                     <li>• Revenue tracking</li>
@@ -166,7 +170,7 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="text-sm text-gray-600 space-y-2">
+                  <ul className="text-sm text-muted-foreground space-y-2">
                     <li>• Multi-signature wallets</li>
                     <li>• Audit trails</li>
                     <li>• KYC integration</li>
@@ -185,7 +189,7 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="text-sm text-gray-600 space-y-2">
+                  <ul className="text-sm text-muted-foreground space-y-2">
                     <li>• Simple API integration</li>
                     <li>• Developer tools</li>
                     <li>• 24/7 support</li>
@@ -222,14 +226,14 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t bg-gray-50">
+      <footer className="border-t bg-muted/50">
         <div className="container px-4 py-12 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <div className="h-6 w-6 rounded bg-gradient-to-r from-very-500 to-very-600" />
               <span className="font-bold">VeryPay Merchant</span>
             </div>
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-muted-foreground">
               © 2024 VeryPay. All rights reserved.
             </div>
           </div>

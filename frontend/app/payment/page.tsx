@@ -18,6 +18,7 @@ import Link from 'next/link'
 import QRCodeLib from 'qrcode'
 import Image from 'next/image'
 import { useEffect } from 'react'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 export default function PaymentPage() {
   const [step, setStep] = useState<'form' | 'qr' | 'processing' | 'success'>('form')
@@ -90,18 +91,19 @@ export default function PaymentPage() {
   }, [step])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-very-50 via-white to-very-50">
+    <div className="min-h-screen bg-gradient-to-br from-very-50 via-background to-very-50 dark:from-very-900 dark:via-background dark:to-very-800">
       {/* Header */}
-      <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-14 items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <ArrowLeft className="h-4 w-4" />
             <span className="text-sm">Back to Home</span>
           </Link>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 flex-1">
             <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-very-500 to-very-600" />
             <span className="font-bold">VeryPay Payment</span>
           </div>
+          <ThemeToggle />
         </div>
       </header>
 

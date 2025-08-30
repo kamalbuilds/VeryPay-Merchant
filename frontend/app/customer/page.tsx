@@ -14,6 +14,7 @@ import {
   QrCode
 } from 'lucide-react'
 import Link from 'next/link'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 // Mock customer data
 const customerData = {
@@ -92,12 +93,13 @@ export default function CustomerPortalPage() {
           <div className="flex items-center space-x-4">
             <div className="text-right">
               <p className="text-sm font-medium">{customerData.name}</p>
-              <p className="text-xs text-gray-500">{customerData.tier} Member</p>
+              <p className="text-xs text-muted-foreground">{customerData.tier} Member</p>
             </div>
             <div className="h-8 w-8 rounded-full bg-very-100 flex items-center justify-center">
               <Trophy className="h-4 w-4 text-very-600" />
             </div>
           </div>
+          <ThemeToggle />
         </div>
       </header>
 
