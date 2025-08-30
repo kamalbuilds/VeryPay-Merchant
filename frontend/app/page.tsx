@@ -1,335 +1,240 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { Trees, Shield, Users, TrendingUp, ArrowRight, Leaf, Globe, BarChart3 } from 'lucide-react';
-import Link from 'next/link';
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { ArrowRight, CreditCard, Smartphone, TrendingUp, Users, Shield, Zap } from 'lucide-react'
 
 export default function HomePage() {
-  const [impactStats, setImpactStats] = useState({
-    carbonOffset: 0,
-    communitiesSupported: 0,
-    hectaresProtected: 0,
-    creditsTraded: 0
-  });
-
-  useEffect(() => {
-    // Animate counter effect
-    const animateValue = (start: number, end: number, duration: number, setter: (value: number) => void) => {
-      const range = end - start;
-      const increment = range / (duration / 16);
-      let current = start;
-      
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= end) {
-          setter(end);
-          clearInterval(timer);
-        } else {
-          setter(Math.floor(current));
-        }
-      }, 16);
-    };
-
-    animateValue(0, 15420, 2000, (val) => setImpactStats(prev => ({ ...prev, carbonOffset: val })));
-    animateValue(0, 127, 2000, (val) => setImpactStats(prev => ({ ...prev, communitiesSupported: val })));
-    animateValue(0, 48500, 2000, (val) => setImpactStats(prev => ({ ...prev, hectaresProtected: val })));
-    animateValue(0, 3842, 2000, (val) => setImpactStats(prev => ({ ...prev, creditsTraded: val })));
-  }, []);
-
-  const features = [
-    {
-      icon: <Trees className="w-6 h-6" />,
-      title: 'Community Impact Zones',
-      description: 'Register and monitor conservation areas with AI-powered satellite and sensor analysis',
-      color: 'from-green-400 to-emerald-600'
-    },
-    {
-      icon: <Shield className="w-6 h-6" />,
-      title: 'Verified Credits',
-      description: 'Generate carbon, biodiversity, water, and soil credits through Hedera Guardian',
-      color: 'from-blue-400 to-indigo-600'
-    },
-    {
-      icon: <Users className="w-6 h-6" />,
-      title: 'ReFi Marketplace',
-      description: 'Trade environmental assets and stake in conservation pools for sustainable yields',
-      color: 'from-purple-400 to-pink-600'
-    },
-    {
-      icon: <TrendingUp className="w-6 h-6" />,
-      title: 'Real-time Impact',
-      description: 'Track environmental improvements and community benefits with transparent metrics',
-      color: 'from-amber-400 to-orange-600'
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 dark:from-green-950 dark:via-blue-950 dark:to-purple-950 opacity-50" />
-        
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 180, 360],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute -top-20 -left-20 w-96 h-96 bg-green-300 dark:bg-green-700 rounded-full opacity-10 blur-3xl"
-          />
-          <motion.div
-            animate={{
-              scale: [1, 1.3, 1],
-              rotate: [360, 180, 0],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute -bottom-20 -right-20 w-96 h-96 bg-blue-300 dark:bg-blue-700 rounded-full opacity-10 blur-3xl"
-          />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-400 dark:to-blue-400 bg-clip-text text-transparent mb-6">
-              EcoNexus
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-              The Regenerative Impact Marketplace connecting local environmental actions to global ReFi markets
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/dashboard">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-shadow flex items-center gap-2"
-                >
-                  Launch Dashboard
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
+    <div className="flex flex-col min-h-screen">
+      {/* Header */}
+      <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <div className="container flex h-14 items-center">
+          <div className="mr-4 hidden md:flex">
+            <Link href="/" className="mr-6 flex items-center space-x-2">
+              <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-very-500 to-very-600" />
+              <span className="hidden font-bold sm:inline-block">VeryPay Merchant</span>
+            </Link>
+          </div>
+          <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+            <nav className="flex items-center space-x-6 text-sm font-medium">
+              <Link href="/dashboard" className="transition-colors hover:text-foreground/80 text-foreground">
+                Dashboard
               </Link>
-              <Link href="/marketplace">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-700"
-                >
-                  Explore Marketplace
-                </motion.button>
+              <Link href="/payment" className="transition-colors hover:text-foreground/80 text-muted-foreground">
+                Payments
               </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Impact Stats */}
-      <section className="py-16 bg-white dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-center"
-            >
-              <div className="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
-                {impactStats.carbonOffset.toLocaleString()}t
-              </div>
-              <div className="text-gray-600 dark:text-gray-400">CO₂ Sequestered</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-center"
-            >
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                {impactStats.communitiesSupported}
-              </div>
-              <div className="text-gray-600 dark:text-gray-400">Communities Supported</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-center"
-            >
-              <div className="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">
-                {impactStats.hectaresProtected.toLocaleString()}
-              </div>
-              <div className="text-gray-600 dark:text-gray-400">Hectares Protected</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-center"
-            >
-              <div className="text-3xl md:text-4xl font-bold text-amber-600 dark:text-amber-400 mb-2">
-                {impactStats.creditsTraded.toLocaleString()}
-              </div>
-              <div className="text-gray-600 dark:text-gray-400">Credits Traded</div>
-            </motion.div>
+              <Link href="/customer" className="transition-colors hover:text-foreground/80 text-muted-foreground">
+                Customers
+              </Link>
+            </nav>
           </div>
         </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-very-50 via-white to-very-50">
+        <div className="container px-4 py-24 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+              Accept{' '}
+              <span className="bg-gradient-to-r from-very-600 to-very-800 bg-clip-text text-transparent">
+                $VERY
+              </span>{' '}
+              Payments
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+              The future of merchant payments with Web3 rewards, loyalty programs, and seamless crypto transactions. 
+              Start accepting $VERY tokens today and reward your customers automatically.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Button asChild size="lg" className="bg-very-600 hover:bg-very-700">
+                <Link href="/dashboard">
+                  Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/payment">Try Demo Payment</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+        
+        {/* Background decoration */}
+        <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+          <div className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-very-200 to-very-400 opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" />
+        </div>
       </section>
 
-      {/* Features */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Transforming Conservation with Technology
+      {/* Features Section */}
+      <section className="py-24 bg-white">
+        <div className="container px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Everything you need to accept crypto payments
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Leverage AI, blockchain, and community engagement to create measurable environmental impact
+            <p className="mt-4 text-lg text-gray-600">
+              Built for modern merchants who want to embrace the future of payments
             </p>
-          </motion.div>
+          </div>
+          
+          <div className="mx-auto mt-16 max-w-7xl">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <Card className="border-very-100 hover:border-very-200 transition-colors">
+                <CardHeader>
+                  <div className="h-10 w-10 rounded-lg bg-very-100 flex items-center justify-center">
+                    <CreditCard className="h-6 w-6 text-very-600" />
+                  </div>
+                  <CardTitle>Instant Payments</CardTitle>
+                  <CardDescription>
+                    Accept $VERY token payments instantly with real-time transaction monitoring
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li>• QR code payment system</li>
+                    <li>• Real-time confirmations</li>
+                    <li>• Auto-convert to fiat</li>
+                  </ul>
+                </CardContent>
+              </Card>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center text-white mb-4`}>
-                  {feature.icon}
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
+              <Card className="border-very-100 hover:border-very-200 transition-colors">
+                <CardHeader>
+                  <div className="h-10 w-10 rounded-lg bg-very-100 flex items-center justify-center">
+                    <TrendingUp className="h-6 w-6 text-very-600" />
+                  </div>
+                  <CardTitle>Rewards System</CardTitle>
+                  <CardDescription>
+                    Automatic customer rewards and loyalty program integration
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li>• Walking rewards tracking</li>
+                    <li>• Tier-based loyalty</li>
+                    <li>• Automatic distribution</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-very-100 hover:border-very-200 transition-colors">
+                <CardHeader>
+                  <div className="h-10 w-10 rounded-lg bg-very-100 flex items-center justify-center">
+                    <Smartphone className="h-6 w-6 text-very-600" />
+                  </div>
+                  <CardTitle>Mobile Optimized</CardTitle>
+                  <CardDescription>
+                    Perfect mobile experience for both merchants and customers
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li>• Progressive Web App</li>
+                    <li>• Offline capabilities</li>
+                    <li>• Push notifications</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-very-100 hover:border-very-200 transition-colors">
+                <CardHeader>
+                  <div className="h-10 w-10 rounded-lg bg-very-100 flex items-center justify-center">
+                    <Users className="h-6 w-6 text-very-600" />
+                  </div>
+                  <CardTitle>Customer Insights</CardTitle>
+                  <CardDescription>
+                    Detailed analytics and customer behavior insights
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li>• Sales analytics</li>
+                    <li>• Customer profiles</li>
+                    <li>• Revenue tracking</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-very-100 hover:border-very-200 transition-colors">
+                <CardHeader>
+                  <div className="h-10 w-10 rounded-lg bg-very-100 flex items-center justify-center">
+                    <Shield className="h-6 w-6 text-very-600" />
+                  </div>
+                  <CardTitle>Secure & Compliant</CardTitle>
+                  <CardDescription>
+                    Enterprise-grade security with regulatory compliance
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li>• Multi-signature wallets</li>
+                    <li>• Audit trails</li>
+                    <li>• KYC integration</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-very-100 hover:border-very-200 transition-colors">
+                <CardHeader>
+                  <div className="h-10 w-10 rounded-lg bg-very-100 flex items-center justify-center">
+                    <Zap className="h-6 w-6 text-very-600" />
+                  </div>
+                  <CardTitle>Fast Integration</CardTitle>
+                  <CardDescription>
+                    Easy setup with comprehensive documentation and support
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-sm text-gray-600 space-y-2">
+                    <li>• Simple API integration</li>
+                    <li>• Developer tools</li>
+                    <li>• 24/7 support</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-green-500 to-blue-500">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Join the Regenerative Revolution
+      <section className="bg-very-900 text-white">
+        <div className="container px-4 py-24 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Ready to start accepting $VERY payments?
             </h2>
-            <p className="text-xl text-green-50 mb-8">
-              Start making a measurable impact on our planet today
+            <p className="mt-6 text-lg text-very-100">
+              Join thousands of merchants already using VeryPay to accept crypto payments and reward their customers.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-green-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-shadow"
-              >
-                Register Your Zone
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-shadow border-2 border-white"
-              >
-                Become an Investor
-              </motion.button>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Button size="lg" variant="secondary" asChild>
+                <Link href="/dashboard">
+                  Start Your Free Trial <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-very-900">
+                <Link href="/contact">Contact Sales</Link>
+              </Button>
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              How EcoNexus Works
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-                1
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Register & Monitor
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Communities register conservation zones and our AI monitors environmental health 24/7
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-                2
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Generate Credits
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Verified environmental improvements generate tradeable carbon and biodiversity credits
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-                3
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Trade & Earn
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Trade credits on the marketplace or stake in ReFi pools for sustainable yields
-              </p>
-            </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="border-t bg-gray-50">
+        <div className="container px-4 py-12 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <div className="h-6 w-6 rounded bg-gradient-to-r from-very-500 to-very-600" />
+              <span className="font-bold">VeryPay Merchant</span>
+            </div>
+            <div className="text-sm text-gray-500">
+              © 2024 VeryPay. All rights reserved.
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
-  );
+  )
 }

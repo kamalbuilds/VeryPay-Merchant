@@ -1,183 +1,302 @@
-# 🌍 EcoNexus - Regenerative Impact Marketplace
+# VeryPay Merchant Frontend
 
-EcoNexus is an AI-powered platform that connects local environmental actions to global ReFi (Regenerative Finance) markets through Hedera's Guardian infrastructure. It empowers smallholder farmers, indigenous communities, and local conservation groups to monetize their environmental stewardship while providing corporations with verifiable, high-integrity environmental assets.
+A comprehensive Next.js 14 frontend application for VeryPay Merchant - a Web3 payment solution with $VERY token rewards and loyalty programs.
 
-## 🎯 Vision
+## 🚀 Features
 
-Creating a sustainable future by bridging grassroots conservation efforts with institutional carbon and biodiversity markets, making environmental protection economically viable for local communities worldwide.
+### Merchant Dashboard
+- **Real-time Transaction Monitoring**: Live view of all $VERY payments with Server Components
+- **Sales Analytics**: Interactive charts showing revenue, volume, and customer insights
+- **Customer Management**: Detailed customer profiles with loyalty tiers and reward tracking
+- **QR Code Generator**: Dynamic payment QR codes with expiration and usage limits
+- **Revenue Reports**: Comprehensive financial reporting with export capabilities
 
-## ✨ Key Features
+### Payment Interface
+- **Mobile-Optimized**: Responsive design perfect for mobile point-of-sale
+- **QR Code Scanner**: Integrated scanner for processing customer payments
+- **Real-time Conversion**: Live USD to $VERY token conversion rates
+- **Transaction Confirmation**: Instant blockchain confirmation with receipt generation
+- **Offline Support**: PWA capabilities for offline payment processing
 
-### 🏞️ Community Impact Zones (CIZ)
-- Register and tokenize conservation areas
-- AI-powered satellite imagery analysis
-- Real-time biodiversity monitoring through bioacoustic sensors
-- Automatic carbon sequestration calculations
+### Customer Portal
+- **Rewards Balance**: Real-time $VERY token balance and transaction history
+- **Walking Rewards**: GPS-based walking tracker with automatic reward distribution
+- **Tier Progress**: Visual loyalty tier progression with benefits breakdown
+- **Social Features**: Community challenges and reward sharing
+- **Transaction History**: Complete payment history with filtering and search
 
-### 💳 Hybrid Credit System
-- **Carbon Credits**: Verified through Hedera Guardian
-- **Biodiversity Credits**: Novel credits for species protection
-- **Water Credits**: Watershed protection metrics
-- **Soil Health Credits**: Regenerative agriculture verification
+## 🛠 Tech Stack
 
-### 🤖 AI Conservation Network
-- 24/7 autonomous monitoring of registered zones
-- Pattern recognition for illegal activities
-- Predictive analytics for conservation planning
-- Natural language interface for farmer reports
+### Core Framework
+- **Next.js 14** with App Router
+- **TypeScript** for type safety
+- **TailwindCSS** for styling
+- **shadcn/ui** component library
 
-### 💰 ReFi Marketplace
-- Trade environmental credits on-chain
-- Stake HBAR in conservation pools
-- Transparent yield distribution
-- Community governance through HCS
+### Web3 Integration
+- **wagmi v2** for Web3 interactions
+- **viem** for Ethereum utilities
+- **RainbowKit** for wallet connections
+- **WalletConnect v2** protocol support
 
-### 🔗 Supply Chain Integration
-- QR code product tracking
-- Complete traceability from source to consumer
-- Premium pricing for verified sustainable products
-- Real-time impact visualization
+### State & Data
+- **Zustand** for client state management
+- **TanStack Query** for server state
+- **Next.js API Routes** for backend services
+- **Server Components** for optimal performance
+
+### Mobile & PWA
+- **next-pwa** for Progressive Web App features
+- **Sharp** for image optimization
+- **Service Worker** for offline support
+- **Push Notifications** for transaction alerts
+
+### Additional Features
+- **next-intl** for internationalization
+- **Framer Motion** for animations
+- **recharts** for data visualization
+- **react-hot-toast** for notifications
+- **react-hook-form** with Zod validation
+
+## 📁 Project Structure
+
+```
+frontend/
+├── app/                          # Next.js 14 App Router
+│   ├── api/                      # API routes
+│   │   ├── transactions/         # Transaction management
+│   │   └── payments/            # Payment processing
+│   ├── dashboard/               # Merchant dashboard
+│   │   ├── layout.tsx           # Dashboard layout with sidebar
+│   │   ├── page.tsx             # Main dashboard view
+│   │   ├── transactions/        # Transaction management
+│   │   ├── customers/           # Customer insights
+│   │   ├── analytics/           # Sales analytics
+│   │   ├── qr-codes/           # QR code management
+│   │   └── settings/           # Merchant settings
+│   ├── payment/                 # Payment interface
+│   │   └── page.tsx             # QR code generation & payment flow
+│   ├── customer/                # Customer portal
+│   │   └── page.tsx             # Rewards tracking & wallet
+│   ├── layout.tsx               # Root layout with providers
+│   ├── page.tsx                 # Landing page
+│   ├── globals.css              # Global styles
+│   └── providers.tsx            # Context providers
+├── components/                  # Reusable components
+│   ├── ui/                      # shadcn/ui components
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── input.tsx
+│   │   └── label.tsx
+│   ├── wallet/                  # Web3 wallet components
+│   ├── qr/                      # QR code components
+│   ├── rewards/                 # Rewards system components
+│   └── notifications/           # Notification components
+├── lib/                         # Utility libraries
+│   ├── utils.ts                 # Common utilities
+│   ├── web3.ts                  # Web3 configuration
+│   └── constants.ts             # App constants
+├── hooks/                       # Custom React hooks
+├── types/                       # TypeScript type definitions
+├── styles/                      # Global styles and themes
+├── public/                      # Static assets
+│   ├── manifest.json            # PWA manifest
+│   ├── icon.svg                 # App icon
+│   └── favicon.ico              # Favicon
+├── middleware.ts                # Next.js middleware
+├── next.config.js               # Next.js configuration
+├── tailwind.config.ts           # TailwindCSS configuration
+└── tsconfig.json                # TypeScript configuration
+```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js v16+ 
-- Hedera Testnet Account ([Create one here](https://portal.hedera.com))
-- OpenAI API Key (for AI features)
+- Node.js 18+ 
+- npm, yarn, or bun package manager
+- WalletConnect Project ID (for Web3 features)
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone and install dependencies**
 ```bash
-git clone https://github.com/yourusername/econexus.git
-cd econexus
-```
-
-2. Install dependencies:
-```bash
+cd frontend
 npm install
+# or
+yarn install
+# or
+bun install
 ```
 
-3. Configure environment variables:
+2. **Environment Setup**
 ```bash
-cp .env.local.example .env.local
+cp .env.example .env.local
 ```
 
-Edit `.env.local` with your credentials:
+Edit `.env.local` with your configuration:
 ```env
-HEDERA_OPERATOR_ID=0.0.xxxxx
-HEDERA_OPERATOR_KEY=302e...
-OPENAI_API_KEY=sk-proj-...
+NEXT_PUBLIC_PROJECT_ID=your_walletconnect_project_id
+NEXT_PUBLIC_APP_NAME="VeryPay Merchant"
+DATABASE_URL=your_database_url
 ```
 
-4. Run the development server:
+3. **Development Server**
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the application.
+4. **Open your browser**
+Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 🏗️ Architecture
+### Production Build
 
-```
-EcoNexus Platform
-├── Frontend (Next.js + TypeScript)
-│   ├── Dashboard UI
-│   ├── Marketplace Interface
-│   └── Impact Visualization
-├── AI Services
-│   ├── Satellite Image Analysis
-│   ├── Bioacoustic Processing
-│   └── Anomaly Detection
-├── Blockchain Layer (Hedera)
-│   ├── Guardian Integration
-│   ├── HCS for Consensus
-│   ├── HTS for Tokenization
-│   └── Smart Contracts
-└── Data Sources
-    ├── Satellite Providers
-    ├── IoT Sensors
-    └── Citizen Science Apps
+```bash
+npm run build
+npm start
 ```
 
-## 🛠️ Technology Stack
+## 📱 PWA Features
 
-- **Frontend**: Next.js 13+, TypeScript, Tailwind CSS, Framer Motion
-- **Blockchain**: Hedera Hashgraph, Hedera Guardian, Hedera Agent Kit
-- **AI/ML**: OpenAI GPT-4, LangChain, Custom CV Models
-- **Database**: PostgreSQL (production), Local storage (demo)
-- **Monitoring**: Real-time satellite APIs, IoT integration
+### Installation
+- Installable on mobile devices and desktops
+- Offline support for core functionality
+- Background sync for pending transactions
 
-## 📊 Impact Metrics
+### Push Notifications
+- Real-time payment confirmations
+- Reward distribution alerts
+- Walking challenge notifications
 
-The platform tracks and verifies:
-- Carbon sequestration (tons CO₂)
-- Biodiversity index improvements
-- Hectares under protection
-- Communities supported
-- Sustainable products verified
+### Offline Capabilities
+- Cache payment data for offline viewing
+- Queue transactions for online sync
+- Offline QR code generation
 
-## 🤝 For Different Users
+## 🌐 Web3 Features
 
-### 🌱 Communities & Farmers
-- Direct access to global markets
-- Fair compensation for conservation
-- Technical support through AI
-- Community governance participation
+### Supported Networks
+- Ethereum Mainnet
+- Polygon
+- Arbitrum
+- Optimism
 
-### 🏢 Corporations
-- High-integrity environmental assets
-- Real-time impact tracking
-- ESG compliance automation
-- Brand differentiation
+### Wallet Support
+- MetaMask
+- WalletConnect (200+ wallets)
+- Coinbase Wallet
+- Rainbow Wallet
+- Trust Wallet
 
-### 🛍️ Consumers
-- Transparent product sustainability
-- Direct conservation contribution
-- Gamified impact tracking
-- Educational content
+### Smart Contract Integration
+- $VERY token payments
+- Automatic reward distribution
+- Multi-signature security
+- Gas optimization
 
-## 🗺️ Roadmap
+## 📊 Analytics & Monitoring
 
-### Phase 1 (Q1 2024) ✅
-- Core platform development
-- Hedera Guardian integration
-- Basic AI monitoring
+### Merchant Analytics
+- Real-time transaction volume
+- Customer behavior insights
+- Revenue trend analysis
+- Geographic payment distribution
 
-### Phase 2 (Q2 2024) 🚧
-- Marketplace launch
-- 10+ pilot zones
-- Mobile app release
+### Performance Monitoring
+- Core Web Vitals tracking
+- Bundle size analysis
+- API response time monitoring
+- User interaction tracking
 
-### Phase 3 (Q3-Q4 2024)
-- Scale to 100+ zones
-- Institutional partnerships
-- Advanced analytics
-- Multi-chain expansion
+## 🔧 Development
+
+### Scripts
+```bash
+npm run dev          # Start development server
+npm run build        # Production build
+npm run start        # Start production server
+npm run lint         # ESLint code checking
+npm run typecheck    # TypeScript type checking
+npm run format       # Prettier code formatting
+npm run analyze      # Bundle size analysis
+```
+
+### Code Quality
+- **ESLint** for code linting
+- **Prettier** for code formatting
+- **TypeScript** for type safety
+- **Husky** for git hooks (optional)
+
+### Testing
+- **Jest** for unit testing
+- **React Testing Library** for component testing
+- **Cypress** for e2e testing (optional)
+
+## 🌍 Internationalization
+
+Support for multiple languages using next-intl:
+- English (default)
+- Spanish
+- French
+- German
+- Japanese
+- Korean
+
+## 🔒 Security
+
+### Authentication
+- Wallet-based authentication
+- Session management with JWT
+- Multi-factor authentication support
+
+### Security Headers
+- Content Security Policy (CSP)
+- XSS protection
+- CSRF protection
+- Secure cookie handling
+
+## 📦 Deployment
+
+### Vercel (Recommended)
+```bash
+vercel --prod
+```
+
+### Docker
+```bash
+docker build -t verypay-frontend .
+docker run -p 3000:3000 verypay-frontend
+```
+
+### Environment Variables
+Set these in your deployment platform:
+- `NEXT_PUBLIC_PROJECT_ID` - WalletConnect Project ID
+- `DATABASE_URL` - Database connection string
+- `NEXTAUTH_SECRET` - Authentication secret
+- `NEXTAUTH_URL` - Authentication callback URL
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📄 License
+## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgments
+## 🆘 Support
 
-- Hedera Hashgraph for the sustainable DLT infrastructure
-- Hedera Guardian for environmental asset verification
-- Partner communities for pilot programs
-- Open source contributors
-
-## 📞 Contact
-
-- Website: [econexus.earth](https://econexus.earth)
-- Email: hello@econexus.earth
-- Twitter: [@EcoNexusReFi](https://twitter.com/EcoNexusReFi)
+For support and questions:
+- Documentation: [docs.verypay.io](https://docs.verypay.io)
+- Discord: [discord.gg/verypay](https://discord.gg/verypay)
+- Email: support@verypay.io
 
 ---
 
-**Built for the Hedera Sustainability Track Hackathon**
-
-*Transforming conservation through technology, one zone at a time.* 🌍
+Built with ❤️ for the Web3 community by the VeryPay team.
