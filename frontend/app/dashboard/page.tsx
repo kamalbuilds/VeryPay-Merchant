@@ -153,12 +153,12 @@ export default function DashboardPage() {
               <CardTitle>Recent Transactions</CardTitle>
               <CardDescription>Latest payment activity</CardDescription>
             </div>
-            <Button variant="outline" size="sm" asChild>
-              <Link href="/dashboard/transactions">
+            <Link href="/dashboard/transactions">
+              <Button variant="outline" size="sm">
                 View All
                 <ArrowUpRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -204,8 +204,8 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 gap-4">
-              <Button asChild variant="outline" className="h-auto p-4 justify-start">
-                <Link href="/payment">
+              <Link href="/payment">
+                <Button variant="outline" className="h-auto p-4 justify-start w-full">
                   <div className="flex items-center space-x-3">
                     <div className="h-8 w-8 rounded-full bg-very-100 flex items-center justify-center">
                       <Plus className="h-4 w-4 text-very-600" />
@@ -215,11 +215,11 @@ export default function DashboardPage() {
                       <p className="text-sm text-muted-foreground">Generate QR code for customer payment</p>
                     </div>
                   </div>
-                </Link>
-              </Button>
+                </Button>
+              </Link>
 
-              <Button asChild variant="outline" className="h-auto p-4 justify-start">
-                <Link href="/dashboard/qr-codes">
+              <Link href="/dashboard/qr-codes">
+                <Button variant="outline" className="h-auto p-4 justify-start w-full">
                   <div className="flex items-center space-x-3">
                     <div className="h-8 w-8 rounded-full bg-very-100 flex items-center justify-center">
                       <Activity className="h-4 w-4 text-very-600" />
@@ -229,11 +229,11 @@ export default function DashboardPage() {
                       <p className="text-sm text-muted-foreground">Manage active payment QR codes</p>
                     </div>
                   </div>
-                </Link>
-              </Button>
+                </Button>
+              </Link>
 
-              <Button asChild variant="outline" className="h-auto p-4 justify-start">
-                <Link href="/dashboard/analytics">
+              <Link href="/dashboard/analytics">
+                <Button variant="outline" className="h-auto p-4 justify-start w-full">
                   <div className="flex items-center space-x-3">
                     <div className="h-8 w-8 rounded-full bg-very-100 flex items-center justify-center">
                       <TrendingUp className="h-4 w-4 text-very-600" />
@@ -243,11 +243,11 @@ export default function DashboardPage() {
                       <p className="text-sm text-muted-foreground">Detailed sales and customer insights</p>
                     </div>
                   </div>
-                </Link>
-              </Button>
+                </Button>
+              </Link>
 
-              <Button asChild variant="outline" className="h-auto p-4 justify-start">
-                <Link href="/dashboard/rewards">
+              <Link href="/dashboard/rewards">
+                <Button variant="outline" className="h-auto p-4 justify-start w-full">
                   <div className="flex items-center space-x-3">
                     <div className="h-8 w-8 rounded-full bg-very-100 flex items-center justify-center">
                       <Users className="h-4 w-4 text-very-600" />
@@ -257,8 +257,8 @@ export default function DashboardPage() {
                       <p className="text-sm text-muted-foreground">Configure customer loyalty programs</p>
                     </div>
                   </div>
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>

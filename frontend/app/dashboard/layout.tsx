@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { 
   LayoutDashboard, 
@@ -12,9 +14,10 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { usePathname } from 'next/navigation'
 
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, current: true },
+  { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Transactions', href: '/dashboard/transactions', icon: CreditCard },
   { name: 'Customers', href: '/dashboard/customers', icon: Users },
   { name: 'Analytics', href: '/dashboard/analytics', icon: BarChart3 },
@@ -28,122 +31,53 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+  
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-background">
       {/* Sidebar */}
-      <div className="hidden w-64 bg-white shadow-sm lg:block">
+      <div className="hidden w-64 bg-card shadow-sm lg:block border-r">
         <div className="flex h-full flex-col">
           {/* Logo */}
           <div className="flex h-16 items-center border-b px-6">
             <Link href="/dashboard" className="flex items-center space-x-2">
               <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-very-500 to-very-600" />
-              <span className="font-bold text-gray-900">VeryPay</span>
+              <span className="font-bold text-foreground">VeryPay</span>
             </Link>
           </div>
 
           {/* Navigation */}
           <nav className="flex-1 space-y-1 px-3 py-6">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="group flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-              >
-                <item.icon className="mr-3 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500" />
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              const isActive = pathname === item.href
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`group flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                    isActive 
+                      ? 'bg-very-100 text-very-900 dark:bg-very-900/20 dark:text-very-400' 
+                      : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                  }`}
+                >
+                  <item.icon className={`mr-3 h-5 w-5 flex-shrink-0 ${
+                    isActive ? 'text-very-600 dark:text-very-400' : 'text-muted-foreground'
+                  }`} />
+                  {item.name}
+                </Link>
+              )
+            })}
           </nav>
 
-          {/* Wallet Connection */}
+          {/* Wallet Connection - Simplified */}
           <div className="border-t p-4">
-            <div className="mb-4">
-              <ConnectButton.Custom>
-                {({
-                  account,
-                  chain,
-                  openAccountModal,
-                  openChainModal,
-                  openConnectModal,
-                  mounted,
-                }) => {
-                  const ready = mounted
-                  const connected = ready && account && chain
-
-                  return (
-                    <div
-                      {...(!ready && {
-                        'aria-hidden': true,
-                        style: {
-                          opacity: 0,
-                          pointerEvents: 'none',
-                          userSelect: 'none',
-                        },
-                      })}
-                    >
-                      {(() => {
-                        if (!connected) {
-                          return (
-                            <Button onClick={openConnectModal} className="w-full">
-                              <Wallet className="mr-2 h-4 w-4" />
-                              Connect Wallet
-                            </Button>
-                          )
-                        }
-
-                        if (chain.unsupported) {
-                          return (
-                            <Button onClick={openChainModal} variant="destructive" className="w-full">
-                              Wrong network
-                            </Button>
-                          )
-                        }
-
-                        return (
-                          <div className="space-y-2">
-                            <Button
-                              onClick={openChainModal}
-                              variant="outline"
-                              className="w-full justify-start"
-                            >
-                              {chain.hasIcon && (
-                                <div
-                                  style={{
-                                    background: chain.iconBackground,
-                                    width: 12,
-                                    height: 12,
-                                    borderRadius: 999,
-                                    overflow: 'hidden',
-                                    marginRight: 8,
-                                  }}
-                                >
-                                  {chain.iconUrl && (
-                                    <img
-                                      alt={chain.name ?? 'Chain icon'}
-                                      src={chain.iconUrl}
-                                      style={{ width: 12, height: 12 }}
-                                    />
-                                  )}
-                                </div>
-                              )}
-                              {chain.name}
-                            </Button>
-                            <Button
-                              onClick={openAccountModal}
-                              variant="outline"
-                              className="w-full justify-start"
-                            >
-                              <Wallet className="mr-2 h-4 w-4" />
-                              {account.displayName}
-                            </Button>
-                          </div>
-                        )
-                      })()}
-                    </div>
-                  )
-                }}
-              </ConnectButton.Custom>
-            </div>
+            <ConnectButton 
+              showBalance={false}
+              accountStatus={{
+                smallScreen: 'avatar',
+                largeScreen: 'full',
+              }}
+            />
           </div>
         </div>
       </div>
@@ -151,9 +85,9 @@ export default function DashboardLayout({
       {/* Main content */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Top bar */}
-        <header className="flex h-16 items-center justify-between border-b bg-white px-6">
+        <header className="flex h-16 items-center justify-between border-b bg-card px-6">
           <div className="flex items-center space-x-4">
-            <h1 className="text-2xl font-bold text-gray-900">Merchant Dashboard</h1>
+            <h1 className="text-2xl font-bold text-foreground">Merchant Dashboard</h1>
           </div>
           <div className="flex items-center space-x-4">
             <Button variant="ghost" size="icon">
@@ -166,7 +100,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto very-gradient-bg p-6">
+        <main className="flex-1 overflow-auto bg-background p-6">
           <div className="container mx-auto max-w-7xl">
             {children}
           </div>
