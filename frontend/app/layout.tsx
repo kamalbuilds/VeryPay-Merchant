@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Providers } from './providers'
 import { Toaster } from 'react-hot-toast'
+import config from '@/lib/config'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -21,11 +22,11 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'),
+  metadataBase: new URL(config.baseUrl),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000',
+    url: config.baseUrl,
     title: 'VeryPay Merchant',
     description: 'Web3 payment solution for merchants',
     siteName: 'VeryPay Merchant',

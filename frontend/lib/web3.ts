@@ -1,6 +1,7 @@
 import { createConfig, http } from 'wagmi'
 import { mainnet, polygon, arbitrum, optimism } from 'wagmi/chains'
 import { coinbaseWallet, injected, walletConnect } from 'wagmi/connectors'
+import appConfig from './config'
 
 // Web3 configuration for wagmi v2
 export const config = createConfig({
@@ -8,15 +9,15 @@ export const config = createConfig({
   connectors: [
     injected(),
     coinbaseWallet({
-      appName: 'VeryPay Merchant',
+      appName: appConfig.app.name,
       appLogoUrl: '/logo.png',
     }),
     walletConnect({
-      projectId: process.env.NEXT_PUBLIC_PROJECT_ID!,
+      projectId: appConfig.walletConnect.projectId,
       metadata: {
-        name: 'VeryPay Merchant',
-        description: 'Web3 Payment Solution for Merchants',
-        url: process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000',
+        name: appConfig.app.name,
+        description: appConfig.app.description,
+        url: appConfig.baseUrl,
         icons: ['/logo.png'],
       },
     }),
