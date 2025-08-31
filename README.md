@@ -1,8 +1,6 @@
 # VeryPay Merchant - Web3 Payment Solution
 
 <div align="center">
-  <img src="https://via.placeholder.com/200x200/0ea5e9/ffffff?text=VeryPay" alt="VeryPay Logo" width="200"/>
-  
   Next-Generation Web3 Payment Platform with Rewards & Loyalty Programs
   
   ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
@@ -39,6 +37,71 @@ graph TB
     A --> G[Wallet Integration]
     G --> H[RainbowKit/WalletConnect]
 ```
+
+## 📁 Project Structure
+
+```
+verypay-merchant/
+├── frontend/                 # Next.js frontend application
+│   ├── app/                 # App router pages
+│   │   ├── dashboard/       # Merchant dashboard
+│   │   ├── customer/        # Customer portal
+│   │   ├── payment/         # Payment processing
+│   │   └── layout.tsx       # Root layout
+│   ├── components/          # Reusable UI components
+│   │   ├── ui/             # shadcn/ui components
+│   │   └── features/       # Feature-specific components
+│   ├── lib/                # Utilities and configurations
+│   ├── styles/             # Global styles
+│   └── public/             # Static assets
+├── contracts/               # Smart contracts
+│   ├── contracts/          # Solidity contracts
+│   ├── scripts/            # Deployment scripts
+│   ├── test/               # Contract tests
+│   └── hardhat.config.js   # Hardhat configuration
+├── backend/                # API backend (optional)
+└── docs/                   # Documentation
+```
+
+## 🔗 API Documentation
+
+### Authentication
+All API endpoints require authentication via Web3 wallet signature.
+
+### Endpoints
+
+#### Payment Processing
+```http
+POST /api/payments/create
+Content-Type: application/json
+
+{
+  "amount": "100.50",
+  "currency": "USD",
+  "merchantId": "merchant_123",
+  "metadata": {}
+}
+```
+
+#### Rewards Management
+```http
+GET /api/rewards/user/{address}
+Authorization: Bearer {wallet_signature}
+```
+
+#### Merchant Analytics
+```http
+GET /api/merchant/analytics
+Authorization: Bearer {merchant_signature}
+```
+
+### Webhook Events
+VeryPay supports webhooks for real-time event notifications:
+
+- `payment.completed`
+- `payment.failed`
+- `reward.distributed`
+- `tier.upgraded`
 
 ## 🛠️ Tech Stack
 
@@ -186,71 +249,6 @@ npx hardhat verify --network sepolia DEPLOYED_CONTRACT_ADDRESS
 npx hardhat run scripts/deploy.js --network mainnet
 ```
 
-## 📁 Project Structure
-
-```
-verypay-merchant/
-├── frontend/                 # Next.js frontend application
-│   ├── app/                 # App router pages
-│   │   ├── dashboard/       # Merchant dashboard
-│   │   ├── customer/        # Customer portal
-│   │   ├── payment/         # Payment processing
-│   │   └── layout.tsx       # Root layout
-│   ├── components/          # Reusable UI components
-│   │   ├── ui/             # shadcn/ui components
-│   │   └── features/       # Feature-specific components
-│   ├── lib/                # Utilities and configurations
-│   ├── styles/             # Global styles
-│   └── public/             # Static assets
-├── contracts/               # Smart contracts
-│   ├── contracts/          # Solidity contracts
-│   ├── scripts/            # Deployment scripts
-│   ├── test/               # Contract tests
-│   └── hardhat.config.js   # Hardhat configuration
-├── backend/                # API backend (optional)
-└── docs/                   # Documentation
-```
-
-## 🔗 API Documentation
-
-### Authentication
-All API endpoints require authentication via Web3 wallet signature.
-
-### Endpoints
-
-#### Payment Processing
-```http
-POST /api/payments/create
-Content-Type: application/json
-
-{
-  "amount": "100.50",
-  "currency": "USD",
-  "merchantId": "merchant_123",
-  "metadata": {}
-}
-```
-
-#### Rewards Management
-```http
-GET /api/rewards/user/{address}
-Authorization: Bearer {wallet_signature}
-```
-
-#### Merchant Analytics
-```http
-GET /api/merchant/analytics
-Authorization: Bearer {merchant_signature}
-```
-
-### Webhook Events
-VeryPay supports webhooks for real-time event notifications:
-
-- `payment.completed`
-- `payment.failed`
-- `reward.distributed`
-- `tier.upgraded`
-
 ## 🎨 Design System
 
 VeryPay uses a comprehensive design system built on Tailwind CSS:
@@ -382,8 +380,8 @@ VeryPay includes Progressive Web App (PWA) features:
 <div align="center">
   <p>Built with ❤️ by kamal</p>
   <p>
-    <a href="https://github.com/kamalbuilds/verypay-merchant">⭐ Star us on GitHub</a> •
-    <a href="https://twitter.com/VeryPayHQ">🐦 Follow on Twitter</a> •
+    <a href="https://github.com/kamalbuilds/VeryPay-Merchant">⭐ Star us on GitHub</a> •
+    <a href="https://x.com/VeryPayHQ">🐦 Follow on Twitter</a> •
     <a href="https://discord.gg/verypay">💬 Join Discord</a>
   </p>
 </div>
